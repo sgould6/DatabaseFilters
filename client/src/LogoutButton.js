@@ -9,7 +9,7 @@ function LogoutButton() {
     const handleClick = async () => {
         try {
 
-            const response = await fetch('https://dynamic-canvas-new.vercel.app/logout', {
+            const response = await fetch('/logout', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -40,9 +40,8 @@ function LogoutButton() {
 
     return (
         <>
-           <div className="d-flex justify-content-end">
+           
                 <Button variant="outline-danger" onClick={handleClick}>LOGOUT</Button>
-            </div>
         </>
     );
 }

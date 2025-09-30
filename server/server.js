@@ -20,7 +20,9 @@ const uri = "mongodb+srv://rodymademe:DzvNMSZON6rlSgZv@dynamiccanvas.hnmr8x8.mon
 const mongoStoreSession = new mongoStore({
     mongoUrl: uri,
     databaseName: "DynamicCanvas",
-    collectionName: "sessions"
+    collectionName: "sessions",
+    ttl: 24 * 3600,
+    autoRemove: 'native'
 });
 
 //initialize mongodb
@@ -35,7 +37,7 @@ mongoose.connect(uri)
     //TODO UPDATE CORS
 //cors options
 var corsOptions = {
-    origin: "https://dynamic-canvas.vercel.app",
+    origin: "http://localhost:3000/",
     methods: ["GET", "POST"],
     credentials: true
 }
@@ -43,19 +45,19 @@ var corsOptions = {
 //JsonParser, cors and proxy
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.set('trust proxy', 1);
+//app.set('trust proxy', 1);
 
 //sessions and passport
 app.use(session({
     name: 'session-id',
     secret: "secret",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     store: mongoStoreSession,
     cookie: {
         maxAge: 86400,
-        sameSite: 'None',
-        secure: true
+        //sameSite: 'None',
+        //secure: true
     }
 }));
 
@@ -112,8 +114,7 @@ app.get('/login-success', (req, res, next) => {
 
 app.get('/profile', function (req, res) {
     if (req.isAuthenticated()) {
-        const userDetails = req.user;
-        res.status(201).json(userDetails);
+        res.status(201).json(true);
     } else {
         res.status(201).json(false);
     }
@@ -137,7 +138,6 @@ app.post('/logout', function (req, res, next) {
 
 //TODO UPDATE DOMAIN FOR RESET PASSWORDS
 //send reset email link
-//Create button for resetting password in react
 app.post('/sendResetEmail', async (req, res) => {
     try {
 

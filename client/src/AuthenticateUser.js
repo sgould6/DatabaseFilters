@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-function AuthenticateUser(props) {
+function AuthenticateUser() {
 
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
-    const [data, setData] = useState('');
-
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const response = await fetch('https://dynamic-canvas-new.vercel.app/profile', {
+                const response = await fetch('/profile', {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -21,23 +21,21 @@ function AuthenticateUser(props) {
 
                 }
                 const result = await response.json();
-                if (result) {
-                    setData(result.displayName);
-                    props.onDataReceived(data);
+                if (result === true) {
+                    return true;
                 } else {
-                    props.onDataReceived(false);
+                    navigate('/');
+                    return false;
                 }
-                
-               
-
 
             } catch (err) {
                 setError(err);
                 console.log(error);
+            }
         }
-
         checkAuthentication();
     }, []);
+       
 
 }
 export default AuthenticateUser;

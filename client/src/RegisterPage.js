@@ -46,7 +46,7 @@ function RegisterPage() {
      
         try {
 
-            const response = await fetch('https://dynamic-canvas-new.vercel.app/registerUser', {
+            const response = await fetch('/registerUser', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -93,7 +93,7 @@ function RegisterPage() {
         //API for login
     const HandleLoginSubmit = async (event) => {
         event.preventDefault(); try {
-            const response = await fetch('https://dynamic-canvas-new.vercel.app/loginUser', {
+            const response = await fetch('/loginUser', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
