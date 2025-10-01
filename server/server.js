@@ -11,6 +11,7 @@ import mongoStore from 'connect-mongo';
 import cors from 'cors'
 import Token from './js/token.js';
 import crypto from 'crypto';
+import AddressItem from './js/addressItem.js';
 
 const app = express();
 //TODO UPDATE MONGODB
@@ -92,6 +93,16 @@ app.post("/registerUser", async (req, res) => {
                 }
             }
         )
+    } catch (err) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    };
+});
+
+app.post("/registerAddress", async (req, res) => {
+    try {
+        const newAddress = new AddressItem(req.body);
+        await newAddress.save();
+        res.status(201).json(true);
     } catch (err) {
         res.status(500).json({ error: 'Internal Server Error' });
     };
