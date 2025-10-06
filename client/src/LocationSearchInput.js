@@ -12,6 +12,9 @@ import {
 } from "@vis.gl/react-google-maps";
 import './map.css';
 import FormHandler from './FormHandler';
+import 'dotenv/config';
+
+const googleMapsApiKey = process.env.API_KEY_GOOGLEMAPS;
 
 
 const LocationSearchInput = () => {
@@ -19,7 +22,7 @@ const LocationSearchInput = () => {
     const [markerRef, marker] = useAdvancedMarkerRef();
     return (
         <APIProvider
-            apiKey="AIzaSyCUdhroZ6m9r2YmrnweIeHdSoF6FIzebRo"
+            apiKey={googleMapsApiKey}
             solutionChannel="GMP_devsite_samples_v3_rgmautocomplete"
         >
             <Map

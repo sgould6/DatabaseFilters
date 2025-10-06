@@ -8,22 +8,101 @@ import { useNavigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import AuthenticateUser from './AuthenticateUser';
 
-
 function RetrieveDataPage() {
     AuthenticateUser();
+
+const [selectedAddress, setSelectedAddress] = useState('');
+const [selectedStatus, setSelectedStatus] = useState('');
+const [error, setError] = useState(null);
+const [AddressSuccess, setAddressSuccess] = useState('');
+const [AddressError, setAddressError] = useState('');
+
+
+const HandleAddressLookupSubmit = async (event) => {
+    event.preventDefault(); try {
+        const response = await fetch('/lookupAddress', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                address: selectedAddress,
+                status: selectedStatus,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        if (result.length === 0) {
+            //clear form fields
+            setSelectedAddress('');
+            setSelectedStatus('');
+            setAddressSuccess('');
+            setAddressError('no address exists');
+            return;
+
+            
+        }
+        //clear form fields
+        setSelectedAddress('');
+        setSelectedStatus('');
+        setAddressError('');
+        setAddressSuccess(result[0].address);
+        return;
+
+
+    } catch (err) {
+        setError(err);
+        console.log(error);
+    }
+}
+
+const handleChangeStatus = (event) => {
+    setSelectedStatus(event.target.value);
+};
+
     return (
         <Container>
-            <Row>
-                <h1>This is the receive data page</h1>
-            </Row>
-            <Row>
-                <Col>
-                    <div className="d-flex justify-content-end">
-                        <LogoutButton />
-                    </div>
-                </Col>
-            </Row>
+            <Form onSubmit={HandleAddressLookupSubmit}>
+                <Row>
+                    <Form.Group as={Row} className="mb-3">
+
+                        <Form.Label htmlFor="selectedAddress">Enter Address</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Enter Address"
+                            id="selectedAddress"
+                            value={selectedAddress}
+                            onChange={(e) => setSelectedAddress(e.target.value)}
+                        />
+
+                    </Form.Group>
+                </Row>
+                <Row>
+                    <Form.Group as={Row} className="mb-3" controlId="mySelect">
+                        <Form.Label>Select Status</Form.Label>
+                        <Form.Select value={selectedStatus} onChange={handleChangeStatus}>
+                            <option value="">Select...</option>
+                            <option value="OK">OK</option>
+                            <option value="IN REVIEW">IN REVIEW</option>
+                            <option value="KNOWN DANGER">KNOWN DANGER</option>
+                            <option value="IMPACTED">IMPACTED</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                        </Form.Select>
+                    </Form.Group>
+                </Row>
+
+                {AddressError && <p style={{ color: 'red' }}>{AddressError}</p>}
+                {AddressSuccess && <p style={{ color: 'green' }}>{AddressSuccess}</p>}
+                <Button variant="success" type="submit">Register Update</Button>
+
+            </Form>
+
         </Container>
+
     )
 
 }

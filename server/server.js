@@ -12,11 +12,16 @@ import cors from 'cors'
 import Token from './js/token.js';
 import crypto from 'crypto';
 import AddressItem from './js/addressItem.js';
+import 'dotenv/config';
+
 
 const app = express();
 //TODO UPDATE MONGODB
 //mongodb
-const uri = "mongodb+srv://rodymademe:DzvNMSZON6rlSgZv@dynamiccanvas.hnmr8x8.mongodb.net/?retryWrites=true&w=majority&appName=DynamicCanvas";
+const mongodbApiKey = process.env.API_KEY_MONGODB;
+const emailJsApiKey = process.env.API_KEY_EMAILJS;
+
+const uri = `mongodb+srv://rodymademe:${mongodbApiKey}@dynamiccanvas.hnmr8x8.mongodb.net/?retryWrites=true&w=majority&appName=DynamicCanvas`;
 
 const mongoStoreSession = new mongoStore({
     mongoUrl: uri,
@@ -108,6 +113,34 @@ app.post("/registerAddress", async (req, res) => {
     };
 });
 
+
+app.post("/lookupAddress", async (req, res) => {
+    try {
+        const newAddress = new AddressItem(req.body);
+
+        //lookup DB ignoring status filter
+        if (newAddress.status == "") {
+            const foundAddress = await AddressItem.find({ address: { $regex: newAddress.address, $options: "i" } });
+            res.status(200).json(foundAddress);
+        } 
+
+        //lookup DB ignoring address filter
+        if (newAddress.address == "") {
+            const foundAddress = await AddressItem.find({ status: { $regex: newAddress.status, $options: "i" } });
+            res.status(200).json(foundAddress);
+        }
+
+        //lookup DB enforcing both filters
+        const foundAddress = await AddressItem.find({ address: { $regex: newAddress.address, $options: "i" }, status: { $regex: newAddress.status, $options: "i" } });
+        res.status(200).json(foundAddress);
+        
+
+    } catch (err) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    };
+});
+
+
 app.post('/loginUser', passport.authenticate('local', {
     failureRedirect: '/login-failure',
     successRedirect: '/login-success'
@@ -182,7 +215,7 @@ app.post('/sendResetEmail', async (req, res) => {
                 'email': clientEmail,
                 'link': resetLink,
             },
-            accessToken: 'G88M0e3HIL_Q7b9DMuxrL',
+            accessToken: emailJsApiKey,
 
         };
 

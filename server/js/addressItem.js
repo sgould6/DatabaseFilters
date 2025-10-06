@@ -11,7 +11,7 @@ const userSchema = new Schema({
     },
     status: {
         type: String,
-        required: [true, "Status string is required"]
+        required: [false, "Status string is required"]
     },
 
 });
