@@ -12,7 +12,6 @@ import {
 } from "@vis.gl/react-google-maps";
 import './map.css';
 import FormHandler from './FormHandler';
-import 'dotenv/config';
 
 const googleMapsApiKey = process.env.API_KEY_GOOGLEMAPS;
 
