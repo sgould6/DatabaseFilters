@@ -93,7 +93,7 @@ function RegisterPage() {
         //API for login
     const HandleLoginSubmit = async (event) => {
         event.preventDefault(); try {
-            const response = await fetch('/loginUser', {
+            const response = await fetch('https://database-filters.vercel.app/loginUser', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
