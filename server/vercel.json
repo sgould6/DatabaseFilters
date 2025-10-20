@@ -24,11 +24,11 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://database-filters-react.vercel.app/"
+          "value": "https://database-filters-react.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET,POST, OPTIONS"
+          "value": "GET, POST, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",

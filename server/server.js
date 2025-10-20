@@ -51,7 +51,7 @@ var corsOptions = {
 //JsonParser, cors and proxy
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.set('trust proxy', 1);
+//app.set('trust proxy', 1);
 
 //sessions and passport
 app.use(session({
