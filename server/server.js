@@ -43,15 +43,15 @@ mongoose.connect(uri)
     //TODO UPDATE CORS
 //cors options
 var corsOptions = {
-    origin: "https://database-filters-react.vercel.app/",
-    methods: ["GET", "POST"],
+    origin: "https://database-filters-react.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true
 }
 
 //JsonParser, cors and proxy
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-//app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 
 //sessions and passport
 app.use(session({
