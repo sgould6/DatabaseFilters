@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -23,7 +23,7 @@ function MenuPage() {
         
         <Container>
             <Row>
-                <h1>This is the menu page</h1>
+                <h1>MAIN MENU</h1>
             </Row>
             <Row>
             <Col>

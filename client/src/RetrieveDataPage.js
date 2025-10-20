@@ -4,9 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import AuthenticateUser from './AuthenticateUser';
+import RowAddressHandler from './RowAddressHandler';
+import MainMenuButton from './MainMenuButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function RetrieveDataPage() {
     AuthenticateUser();
@@ -20,7 +22,7 @@ const [AddressError, setAddressError] = useState('');
 
 const HandleAddressLookupSubmit = async (event) => {
     event.preventDefault(); try {
-        const response = await fetch('/lookupAddress', {
+        const response = await fetch('https://database-filters.vercel.app/lookupAddress', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -41,6 +43,7 @@ const HandleAddressLookupSubmit = async (event) => {
             setSelectedStatus('');
             setAddressSuccess('');
             setAddressError('no address exists');
+            
             return;
 
             
@@ -49,7 +52,7 @@ const HandleAddressLookupSubmit = async (event) => {
         setSelectedAddress('');
         setSelectedStatus('');
         setAddressError('');
-        setAddressSuccess(result[0].address);
+        setAddressSuccess(result);        
         return;
 
 
@@ -65,13 +68,26 @@ const handleChangeStatus = (event) => {
 
     return (
         <Container>
+            <Row>
+                <Col><h1>Lookup address status</h1></Col>
+                <Col>
+                    <div style={{ paddingTop: '20px' }} className="d-flex justify-content-end">
+                        <ButtonGroup>
+                            <MainMenuButton />
+                            <LogoutButton />
+                        </ButtonGroup>
+
+                    </div>
+                </Col>
+
+            </Row>
+        
             <Form onSubmit={HandleAddressLookupSubmit}>
-                <Row>
+                
                     <Form.Group as={Row} className="mb-3">
 
                         <Form.Label htmlFor="selectedAddress">Enter Address</Form.Label>
                         <Form.Control
-                            required
                             type="text"
                             placeholder="Enter Address"
                             id="selectedAddress"
@@ -80,8 +96,8 @@ const handleChangeStatus = (event) => {
                         />
 
                     </Form.Group>
-                </Row>
-                <Row>
+                
+               
                     <Form.Group as={Row} className="mb-3" controlId="mySelect">
                         <Form.Label>Select Status</Form.Label>
                         <Form.Select value={selectedStatus} onChange={handleChangeStatus}>
@@ -93,15 +109,19 @@ const handleChangeStatus = (event) => {
                             <option value="COMPLETED">COMPLETED</option>
                         </Form.Select>
                     </Form.Group>
-                </Row>
-
+                
                 {AddressError && <p style={{ color: 'red' }}>{AddressError}</p>}
-                {AddressSuccess && <p style={{ color: 'green' }}>{AddressSuccess}</p>}
-                <Button variant="success" type="submit">Register Update</Button>
-
+                <Button variant="success" type="submit">Check Address</Button>
             </Form>
-
-        </Container>
+            
+            <Row>
+            <div style={{paddingTop: '20px'}}>
+            <RowAddressHandler address={AddressSuccess} />
+                </div>
+            </Row>
+            </Container>
+        
+        
 
     )
 

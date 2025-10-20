@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -25,7 +24,7 @@ function FormHandler(places) {
         
     const HandleAddressRegisterSubmit = async (event) => {
         event.preventDefault(); try {
-            const response = await fetch('/registerAddress', {
+            const response = await fetch('https://database-filters.vercel.app/registerAddress', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

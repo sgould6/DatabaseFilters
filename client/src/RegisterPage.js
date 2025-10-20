@@ -46,7 +46,7 @@ function RegisterPage() {
      
         try {
 
-            const response = await fetch('/registerUser', {
+            const response = await fetch('https://database-filters.vercel.app/registerUser', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

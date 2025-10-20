@@ -9,7 +9,7 @@ function LogoutButton() {
     const handleClick = async () => {
         try {
 
-            const response = await fetch('/logout', {
+            const response = await fetch('https://database-filters.vercel.app/logout', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

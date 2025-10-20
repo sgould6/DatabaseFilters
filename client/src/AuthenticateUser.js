@@ -9,7 +9,7 @@ function AuthenticateUser() {
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const response = await fetch('/profile', {
+                const response = await fetch('https://database-filters.vercel.app/profile', {
                     method: 'GET',
                     credentials: 'include',
                     headers: {

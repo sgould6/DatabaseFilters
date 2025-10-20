@@ -27,7 +27,7 @@ const mongoStoreSession = new mongoStore({
     mongoUrl: uri,
     databaseName: "DynamicCanvas",
     collectionName: "sessions",
-    ttl: 24 * 3600,
+    ttl: 86400,
     autoRemove: 'native'
 });
 
@@ -43,7 +43,7 @@ mongoose.connect(uri)
     //TODO UPDATE CORS
 //cors options
 var corsOptions = {
-    origin: "http://localhost:3000/",
+    origin: "https://database-filters-react.vercel.app/",
     methods: ["GET", "POST"],
     credentials: true
 }
@@ -51,7 +51,7 @@ var corsOptions = {
 //JsonParser, cors and proxy
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-//app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 
 //sessions and passport
 app.use(session({
@@ -62,8 +62,8 @@ app.use(session({
     store: mongoStoreSession,
     cookie: {
         maxAge: 86400,
-        //sameSite: 'None',
-        //secure: true
+        sameSite: 'None',
+        secure: true
     }
 }));
 
@@ -121,18 +121,22 @@ app.post("/lookupAddress", async (req, res) => {
         //lookup DB ignoring status filter
         if (newAddress.status == "") {
             const foundAddress = await AddressItem.find({ address: { $regex: newAddress.address, $options: "i" } });
-            res.status(200).json(foundAddress);
-        } 
-
-        //lookup DB ignoring address filter
-        if (newAddress.address == "") {
-            const foundAddress = await AddressItem.find({ status: { $regex: newAddress.status, $options: "i" } });
-            res.status(200).json(foundAddress);
+            return res.status(200).json(foundAddress);
+            
         }
+        //lookup DB ignoring address filter
+        else if (newAddress.address == "") {
+            const foundAddress = await AddressItem.find({ status: { $regex: newAddress.status, $options: "i" } });
+            return res.status(200).json(foundAddress);
 
         //lookup DB enforcing both filters
-        const foundAddress = await AddressItem.find({ address: { $regex: newAddress.address, $options: "i" }, status: { $regex: newAddress.status, $options: "i" } });
-        res.status(200).json(foundAddress);
+        } else {
+            
+            const foundAddress = await AddressItem.find({ address: { $regex: newAddress.address, $options: "i" }, status: { $regex: newAddress.status, $options: "i" } });
+            return res.status(200).json(foundAddress);
+
+        }
+
         
 
     } catch (err) {
@@ -204,7 +208,7 @@ app.post('/sendResetEmail', async (req, res) => {
 
 
         //set reset link for emailJs
-        var resetLink = `https://dynamic-canvas.vercel.app/ResetPassword/${user._id}/${token.token}`;
+        var resetLink = `https://database-filters-react.vercel.app/ResetPassword/${user._id}/${token.token}`;
 
         //update emailJS entries        
         var data = {

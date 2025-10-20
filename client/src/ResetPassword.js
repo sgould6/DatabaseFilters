@@ -24,7 +24,7 @@ function ResetPassword() {
     const HandlePasswordResetSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`https://dynamic-canvas-new.vercel.app/${userId}/${token}`, {
+            const response = await fetch(`https://database-filters.vercel.app/${userId}/${token}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

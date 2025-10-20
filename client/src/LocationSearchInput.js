@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { createRoot } from "react-dom/client";
 import {
     APIProvider,
     ControlPosition,
@@ -13,7 +12,7 @@ import {
 import './map.css';
 import FormHandler from './FormHandler';
 
-const googleMapsApiKey = process.env.API_KEY_GOOGLEMAPS;
+const googleMapsApiKey = process.env.REACT_APP_API_KEY_GOOGLEMAPS;
 
 
 const LocationSearchInput = () => {

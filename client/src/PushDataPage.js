@@ -1,14 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import AuthenticateUser from './AuthenticateUser';
 import LocationSearchInput from './LocationSearchInput';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import MainMenuButton from './MainMenuButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
 
 //google maps api key
 const PushDataPage = () => {
@@ -17,16 +16,21 @@ const PushDataPage = () => {
     return (
         <Container>
             <Row>
-                <Col><h1>This is the push data page</h1></Col>
-                <Col><div className="d-flex justify-content-end">
-                    <LogoutButton />
-                </div>
+                <Col><h1>Add new address status</h1></Col>
+                <Col>
+                    <div style={{ paddingTop: '20px' }} className="d-flex justify-content-end">
+                        <ButtonGroup>
+                            <MainMenuButton />
+                            <LogoutButton />
+                        </ButtonGroup>
+
+                    </div>
             </Col>
             
             </Row>
             <Row>
                 
-                <div style={{ height: '400px', width: '100%' }}>                
+                <div style={{ paddingTop: '20px', height: '400px', width: '100%' }}>                
                     <LocationSearchInput />
                 </div>  
             </Row>

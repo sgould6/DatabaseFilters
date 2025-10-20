@@ -10,7 +10,7 @@ function ResetPasswordButton(props) {
     const handleClick = async () => {
         try {
 
-            const response = await fetch('https://dynamic-canvas-new.vercel.app/sendResetEmail', {
+            const response = await fetch('https://database-filters.vercel.app/sendResetEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
