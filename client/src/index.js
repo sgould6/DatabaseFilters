@@ -5,7 +5,8 @@ import './index.css';
 import RegisterPage from './RegisterPage';
 import PushDataPage from './PushDataPage';
 import ResetPassword from './ResetPassword';
-import RetrieveDataPage from './RetrieveDataPage'
+import RetrieveDataPage from './RetrieveDataPage';
+import NotesPage from './NotesPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MenuPage from './MenuPage';
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route path="/" element={<RegisterPage />} />
+            <Route path="NotesPage" element={<NotesPage />} />
             <Route path="PushDataPage" element={<PushDataPage />} />
             <Route path="MenuPage" element={<MenuPage />} />
             <Route path="RetrieveDataPage" element={<RetrieveDataPage />} />

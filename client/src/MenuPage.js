@@ -18,6 +18,9 @@ function MenuPage() {
         navigate('/RetrieveDataPage')
     }
 
+    const handleClickNotes = async () => {
+        navigate('/NotesPage')
+    }
 
     return (
         
@@ -28,7 +31,11 @@ function MenuPage() {
             <Row>
             <Col>
                 <Button variant="primary" onClick={handleClickEnter}>Enter Data</Button>
-            </Col>
+                </Col>
+
+                <Col>
+                    <Button variant="primary" onClick={handleClickNotes}>Create Notes</Button>
+                </Col>
             
             <Col>
                 <Button variant="success" onClick={handleClickRetrieve}>Retrieve Data</Button>
