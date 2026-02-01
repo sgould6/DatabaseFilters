@@ -35,7 +35,7 @@ export default function NotesPage() {
         <>
               <Row>
                 <Col><h1>Infinite Sticky Notes!</h1> <br />
-                    <Button variant="success" onClick={addTextbox}>Add Sticky Note</Button>
+                    <Button variant="outline-success" onClick={addTextbox}>Add Sticky Note</Button>
 
                 </Col>
                 <Col>

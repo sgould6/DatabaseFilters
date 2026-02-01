@@ -52,7 +52,7 @@ function ResetPasswordButton(props) {
 
             {usernameError && <p style={{ color: 'red' }}>{usernameError}</p>}
             {usernameSuccess && <p style={{ color: 'green' }}>{usernameSuccess}</p>}
-                <Button variant="outline-danger" onClick={handleClick}>Reset Password</Button>
+            <Button variant="outline-warning" onClick={handleClick}>Reset Password</Button>
             
         </>
     );

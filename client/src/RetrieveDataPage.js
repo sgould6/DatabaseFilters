@@ -111,7 +111,7 @@ const handleChangeStatus = (event) => {
                     </Form.Group>
                 
                 {AddressError && <p style={{ color: 'red' }}>{AddressError}</p>}
-                <Button variant="success" type="submit">Check Address</Button>
+                <Button variant="outline-success" type="submit">Check Address</Button>
             </Form>
             
             <Row>

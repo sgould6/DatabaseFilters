@@ -30,15 +30,15 @@ function MenuPage() {
             </Row>
             <Row>
             <Col>
-                <Button variant="primary" onClick={handleClickEnter}>Enter Data</Button>
+                    <Button variant="outline-primary" onClick={handleClickEnter}>Enter Data</Button>
                 </Col>
 
                 <Col>
-                    <Button variant="primary" onClick={handleClickNotes}>Create Notes</Button>
+                    <Button variant="outline-primary" onClick={handleClickNotes}>Create Notes</Button>
                 </Col>
             
             <Col>
-                <Button variant="success" onClick={handleClickRetrieve}>Retrieve Data</Button>
+                    <Button variant="outline-primary" onClick={handleClickRetrieve}>Retrieve Data</Button>
             </Col>
             <Col>
                  <div className="d-flex justify-content-end">

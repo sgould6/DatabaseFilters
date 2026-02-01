@@ -99,7 +99,7 @@ function FormHandler(places) {
                
                 {AddressError && <p style={{ color: 'red' }}>{AddressError}</p>}
                 {AddressSuccess && <p style={{ color: 'green' }}>{AddressSuccess}</p>}
-                    <Button variant="success" type="submit">Register Update</Button>
+                <Button variant="outline-success" type="submit">Register Update</Button>
                
             </Form>
 

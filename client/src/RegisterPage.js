@@ -167,7 +167,7 @@ function RegisterPage() {
                             {passwordUserError && <p style={{ color: 'red' }}>{passwordUserError}</p>}
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">Login</Button> {resetPassword && <ResetPasswordButton username={usernameLogin} />}
+                        <Button variant="outline-primary" type="submit">Login</Button> {resetPassword && <ResetPasswordButton username={usernameLogin} />}
                     </Form>
                     <br />
                     <ThemeToggle />
@@ -252,7 +252,7 @@ function RegisterPage() {
                             {usernameSuccess && <p style={{ color: 'green' }}>{usernameSuccess}</p>}
                         </Form.Group>
                         
-                        <Button variant="success" type="submit" disabled={!allConditionsMet }>Register</Button>
+                        <Button variant="outline-primary" type="submit" disabled={!allConditionsMet }>Register</Button>
                     </Form>
                 </Col>
                 

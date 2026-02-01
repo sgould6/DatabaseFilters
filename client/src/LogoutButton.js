@@ -41,7 +41,7 @@ function LogoutButton() {
     return (
         <>
            
-                <Button variant="outline-danger" onClick={handleClick}>LOGOUT</Button>
+            <Button variant="outline-danger" onClick={handleClick}>LOGOUT</Button>
         </>
     );
 }

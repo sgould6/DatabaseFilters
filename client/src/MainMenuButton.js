@@ -11,7 +11,7 @@ function MainMenuButton() {
 
     return (
         <>
-            <Button variant="primary" onClick={handleClick}>MAIN MENU</Button>
+            <Button variant="outline-primary" onClick={handleClick}>MAIN MENU</Button>
         </>
     )
 }

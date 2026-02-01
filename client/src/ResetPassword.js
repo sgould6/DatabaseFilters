@@ -114,7 +114,7 @@ function ResetPassword() {
                             {usernameError && <p style={{ color: 'red' }}>{usernameError}</p>}
                     </Form.Group>
 
-                    <Button variant="success" type="submit" disabled={!allConditionsMet}>Reset Password</Button>
+                        <Button variant="outline-warning" type="submit" disabled={!allConditionsMet}>Reset Password</Button>
                 </Form>
                 </Col>
             </Row>
