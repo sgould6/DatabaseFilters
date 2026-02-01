@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -6,7 +6,13 @@ function AuthenticateUser() {
 
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+
+    const runAPI = useRef(false);
+
     useEffect(() => {
+        if (runAPI.current) return;
+        runAPI.current = true;
+
         const checkAuthentication = async () => {
             try {
                 const response = await fetch('https://database-filters.vercel.app/profile', {
