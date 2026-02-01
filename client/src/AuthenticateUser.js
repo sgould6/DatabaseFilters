@@ -1,11 +1,10 @@
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 function AuthenticateUser() {
 
     const navigate = useNavigate();
-    const [error, setError] = useState(null);
 
     const runAPI = useRef(false);
 
@@ -35,12 +34,10 @@ function AuthenticateUser() {
                 }
 
             } catch (err) {
-                setError(err);
-                console.log(error);
             }
         }
         checkAuthentication();
-    }, []);
+    }, [navigate]);
        
 
 }
