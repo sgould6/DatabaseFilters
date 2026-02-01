@@ -9,12 +9,13 @@ import RetrieveDataPage from './RetrieveDataPage';
 import NotesPage from './NotesPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MenuPage from './MenuPage';
+import { Providers } from "./Providers";
 
 
 function Layout() {
     return (
         <div>
-            <Outlet /> {/* Child routes will render here */}
+            <Providers><Outlet /></Providers> {/* Child routes will render here */}
         </div>
     );
 }
