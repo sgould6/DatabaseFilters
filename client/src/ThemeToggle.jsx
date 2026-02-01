@@ -8,6 +8,14 @@ export default function ThemeToggle() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
+    useEffect(() => {
+        document.documentElement.setAttribute(
+            "data-bs-theme",
+            theme // "light" | "dark"
+        );
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
     useEffect(() => setMounted(true), []);
     if (!mounted) return null; //prevents hydration mismatch
 
