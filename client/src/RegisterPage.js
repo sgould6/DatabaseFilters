@@ -9,6 +9,7 @@ import PasswordChecklist from "react-password-checklist";
 import validator from "validator";
 import ResetPasswordButton from './ResetPasswordButton';
 import ThemeToggle from './ThemeToggle';
+import './theme.css'
 
 
 function RegisterPage() {
@@ -168,7 +169,7 @@ function RegisterPage() {
 
                         <Button variant="primary" type="submit">Login</Button> {resetPassword && <ResetPasswordButton username={usernameLogin} />}
                     </Form>
-
+                    <br />
                     <ThemeToggle />
 
                 </Col>
