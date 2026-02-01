@@ -1,7 +1,16 @@
 import { useState, useRef } from "react";
 import Draggable from "react-draggable";
+import MainMenuButton from './MainMenuButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import AuthenticateUser from './AuthenticateUser';
+import LogoutButton from './LogoutButton';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 
 export default function NotesPage() {
+
+    AuthenticateUser();
     const [boxes, setBoxes] = useState([]);
     const nodeRef = useRef(null);
 
@@ -23,8 +32,23 @@ export default function NotesPage() {
     };
 
     return (
-        <div style={{ height: "100vh", padding: 20 }}>
-            <button onClick={addTextbox}> Add Text</button>
+        <>
+              <Row>
+                <Col><h1>Infinite Stickey Notes!</h1> <br />
+                    <Button variant="success" onClick={addTextbox}>Add Sticky Note</Button>
+
+                </Col>
+                <Col>
+                    <div style={{ paddingTop: '20px' }} className="d-flex justify-content-end">
+                        <ButtonGroup>
+                            <MainMenuButton />
+                            <LogoutButton />
+                        </ButtonGroup>
+
+                    </div>
+                </Col>
+
+            </Row>
 
             {boxes.map(box => {
 
@@ -79,6 +103,7 @@ export default function NotesPage() {
                     </Draggable>
                 );
             })}
-        </div>
+            
+        </>
     );
 }
