@@ -6,6 +6,9 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import AuthenticateUser from './AuthenticateUser';
 import LogoutButton from './LogoutButton';
+import ThemeToggle from './ThemeToggle';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import './theme.css';
 
 function MenuPage() {
     AuthenticateUser();
@@ -41,8 +44,11 @@ function MenuPage() {
                     <Button variant="outline-primary" onClick={handleClickRetrieve}>Retrieve Data</Button>
             </Col>
             <Col>
-                 <div className="d-flex justify-content-end">
-                    <LogoutButton />
+                    <div className="d-flex justify-content-end">
+                 <ButtonGroup>
+                            <ThemeToggle />
+                            <LogoutButton />
+                        </ButtonGroup>
                  </div>
             </Col>
             </Row>
