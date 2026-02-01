@@ -2,3 +2,13 @@
     background: #121212;
     color: white;
 }
+
+/* Dark theme tweaks */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #0f172a;
+    --bs-body-color: #e5e7eb;
+    --bs-border-color: #334155;
+    --bs-card-bg: #020617;
+    --bs-input-bg: #020617;
+    --bs-input-color: #e5e7eb;
+}
