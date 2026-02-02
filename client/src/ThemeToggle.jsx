@@ -20,7 +20,7 @@ export default function ThemeToggle() {
     if (!mounted) return null; //prevents hydration mismatch
 
     return (
-        <Button variant="primary" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        <Button variant="outline-primary" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             {theme === "dark" ? "Light" : "Dark"}</Button>
        
     );
